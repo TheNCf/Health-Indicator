@@ -21,6 +21,7 @@ public class SliderTextView : MonoBehaviour
     private void Awake()
     {
         _sliderText = GetComponent<TextMeshProUGUI>();
+        _slider.onValueChanged.RemoveListener(UpdateText);
     }
 
     private void OnEnable()
