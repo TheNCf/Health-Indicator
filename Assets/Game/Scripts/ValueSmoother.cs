@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class ValueSmoother : MonoBehaviour
 {
-    [SerializeField, Min(0.0f)] private float _smoothUpdateDuration;
+    [SerializeField, Min(0.005f)] private float _smoothUpdateDuration;
 
     private IEnumerator _smoothCoroutine;
 
