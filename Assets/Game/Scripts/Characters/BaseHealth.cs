@@ -8,7 +8,7 @@ public class BaseHealth : MonoBehaviour, IDamageable
 
     private int _currentHealth;
 
-    public event Action HealthChanged;
+    public event Action<int> HealthChanged;
     public event Action DamageTaken;
     public event Action BecameDead;
 
@@ -22,7 +22,7 @@ public class BaseHealth : MonoBehaviour, IDamageable
         private set
         {
             _currentHealth = value;
-            HealthChanged?.Invoke();
+            HealthChanged?.Invoke(value);
         }
     }
     public bool IsAlive => CurrentHealth > 0;
