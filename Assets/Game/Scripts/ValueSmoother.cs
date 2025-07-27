@@ -19,6 +19,12 @@ public class ValueSmoother
 
     public void SmoothNumberChange(MonoBehaviour coroutineStarter, float start, float target)
     {
+        if (_duration == 0)
+        {
+            NumberChanged?.Invoke(target);
+            return;
+        }
+
         if (_coroutine != null)
             coroutineStarter.StopCoroutine(_coroutine);
 
