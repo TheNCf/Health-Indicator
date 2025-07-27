@@ -1353,7 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 176179905}
-  _smoothDuration: 0.005
+  _smoothDuration: 0
 --- !u!1 &1764366316
 GameObject:
   m_ObjectHideFlags: 0

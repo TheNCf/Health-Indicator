@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class HealthViewBase : MonoBehaviour
 {
     [SerializeField] private BaseHealth _health;
-    [SerializeField, Min(0.005f)] private float _smoothDuration; 
+    [SerializeField, Min(0.0f)] private float _smoothDuration; 
 
     protected ValueSmoother Smoother;
 

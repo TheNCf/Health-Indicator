@@ -31,15 +31,17 @@ public class ValueSmoother
         float elapsedTime = 0;
         float startValue = start;
 
-        while (elapsedTime < _duration)
+        do
         {
             elapsedTime += Time.deltaTime;
             float normalizedPosition = elapsedTime / _duration;
+            normalizedPosition = Mathf.Clamp01(normalizedPosition);
             float easedNormalizedPosition = 1 - Mathf.Pow(1 - normalizedPosition, _easingPower);
             float intermedaiteValue = Mathf.Lerp(startValue, target, easedNormalizedPosition);
             NumberChanged?.Invoke(intermedaiteValue);
 
             yield return null;
         }
+        while (elapsedTime < _duration);
     }
 }
