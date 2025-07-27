@@ -6,31 +6,21 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class SliderHealthView : HealthViewBase
 {
-    protected Slider Slider;
-
-    protected override void OnValidate()
-    {
-        if (Slider == null)
-            return;
-
-        base.OnValidate();
-    }
+    private Slider _slider;
 
     protected override void Awake()
     {
-        Slider = GetComponent<Slider>();
-        OnHealthChanged(CurrentHealth);
         base.Awake();
+        _slider = GetComponent<Slider>();
     }
 
     protected override void OnHealthChanged(int health)
     {
-        Slider.maxValue = MaxHealth;
-        SmoothNumberChange(Slider.value, health);
+        Smoother.SmoothNumberChange(this, _slider.value, (float)health / MaxHealth);
     }
 
-    protected override void OnSmoothNumberChanged(int intermediateValue)
+    protected override void OnSmoothValueChanged(float intermediateValue)
     {
-        Slider.value = intermediateValue;
+        _slider.value = intermediateValue;
     }
 }

@@ -533,9 +533,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1350892506}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
-  m_WholeNumbers: 1
-  m_Value: 1000
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -551,8 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8516dfd324498c4409401176cd750d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smoothUpdateDuration: 2
   _health: {fileID: 2070222855}
+  _smoothDuration: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,9 +1334,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
-  m_WholeNumbers: 1
-  m_Value: 1000
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1352,8 +1352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8516dfd324498c4409401176cd750d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smoothUpdateDuration: 0.005
   _health: {fileID: 176179905}
+  _smoothDuration: 0.005
 --- !u!1 &1764366316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,8 +1404,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb868048189b0ce4b8f58c5df09ea31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smoothUpdateDuration: 2
   _health: {fileID: 2070222855}
+  _smoothDuration: 2
 --- !u!114 &1764366319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,7 +1681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7f1d950bcb663498d77249d9142861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxHealth>k__BackingField: 1000
+  <MaxHealth>k__BackingField: 1500
   <StaggerTime>k__BackingField: 0.3
 --- !u!1 &2086375596
 GameObject:

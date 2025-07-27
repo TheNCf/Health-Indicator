@@ -9,26 +9,20 @@ public class TextHealthView : HealthViewBase
 
     private float _currentValue;
 
-    protected override void OnValidate()
-    {
-        _currentValue = CurrentHealth;
-        _healthText = GetComponent<TextMeshProUGUI>();
-        base.OnValidate();
-    }
-
     protected override void Awake()
     {
-        _currentValue = CurrentHealth;
-        _healthText = GetComponent<TextMeshProUGUI>();
         base.Awake();
+        _currentValue = CurrentValue;
+        _healthText = GetComponent<TextMeshProUGUI>();
+        UpdateText(_currentValue);
     }
 
     protected override void OnHealthChanged(int health)
     {
-        SmoothNumberChange(_currentValue, health);
+        Smoother.SmoothNumberChange(this, _currentValue, (float)health / MaxHealth);
     }
 
-    protected override void OnSmoothNumberChanged(int intermediateValue)
+    protected override void OnSmoothValueChanged(float intermediateValue)
     {
         UpdateText(intermediateValue);
     }
@@ -36,6 +30,6 @@ public class TextHealthView : HealthViewBase
     private void UpdateText(float value)
     {
         _currentValue = value;
-        _healthText.text = _currentValue + "/" + MaxHealth;
+        _healthText.text = Mathf.RoundToInt(value * MaxHealth) + "/" + MaxHealth;
     }
 }

@@ -3,23 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ValueSmoother : MonoBehaviour
+public class ValueSmoother
 {
-    [SerializeField, Min(0.005f)] private float _smoothUpdateDuration;
+    private float _duration;
+    private int _easingPower = 4;
 
-    private IEnumerator _smoothCoroutine;
+    private IEnumerator _coroutine;
 
-    protected event Action<int> SmoothNumberChanged;
+    public event Action<float> NumberChanged;
 
-    protected abstract void OnSmoothNumberChanged(int intermediateValue);
-
-    protected void SmoothNumberChange(float start, float target)
+    public ValueSmoother(float duration)
     {
-        if (_smoothCoroutine != null)
-            StopCoroutine(_smoothCoroutine);
+        _duration = duration;
+    }
 
-        _smoothCoroutine = SmoothNumberChangeCoroutine(start, target);
-        StartCoroutine(_smoothCoroutine);
+    public void SmoothNumberChange(MonoBehaviour coroutineStarter, float start, float target)
+    {
+        if (_coroutine != null)
+            coroutineStarter.StopCoroutine(_coroutine);
+
+        _coroutine = SmoothNumberChangeCoroutine(start, target);
+        coroutineStarter.StartCoroutine(_coroutine);
     }
 
     private IEnumerator SmoothNumberChangeCoroutine(float start, float target)
@@ -27,13 +31,13 @@ public abstract class ValueSmoother : MonoBehaviour
         float elapsedTime = 0;
         float startValue = start;
 
-        while (elapsedTime < _smoothUpdateDuration)
+        while (elapsedTime < _duration)
         {
             elapsedTime += Time.deltaTime;
-            float normalizedPosition = elapsedTime / _smoothUpdateDuration;
-            float easedNormalizedPosition = 1 - Mathf.Pow(1 - normalizedPosition, 4);
-            int intermedaiteValue = Mathf.RoundToInt(Mathf.Lerp(startValue, target, easedNormalizedPosition));
-            SmoothNumberChanged?.Invoke(intermedaiteValue);
+            float normalizedPosition = elapsedTime / _duration;
+            float easedNormalizedPosition = 1 - Mathf.Pow(1 - normalizedPosition, _easingPower);
+            float intermedaiteValue = Mathf.Lerp(startValue, target, easedNormalizedPosition);
+            NumberChanged?.Invoke(intermedaiteValue);
 
             yield return null;
         }
